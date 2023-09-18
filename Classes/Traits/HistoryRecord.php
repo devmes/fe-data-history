@@ -67,7 +67,8 @@ trait HistoryRecord
                     $oldRecord[$dbProperty] = ($object->_getCleanProperty($property) ? $object->_getCleanProperty($property)->getUid() : null);
                     $newRecord[$dbProperty] = $value->getUid();
                 } else {
-                    $oldRecord[$dbProperty] = $object->_getCleanProperty($property);
+                    $oldValue = $object->_getCleanProperty($property);
+                    $oldRecord[$dbProperty] =  $oldValue instanceof AbstractEntity ? $oldValue->getUid() : $oldValue;
                     $newRecord[$dbProperty] = $value;
                 }
             }
